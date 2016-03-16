@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+    <entity name="Atividade" representedClassName=".Atividade" syncable="YES">
+        <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlImg" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="comunidades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comunidade" inverseName="atividade" inverseEntity="Comunidade" syncable="YES"/>
+        <relationship name="eventos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Evento" inverseName="atividade" inverseEntity="Evento" syncable="YES"/>
+        <relationship name="usuarios" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Usuario" inverseName="atividades" inverseEntity="Usuario" syncable="YES"/>
+    </entity>
+    <entity name="Comunidade" representedClassName=".Comunidade" syncable="YES">
+        <attribute name="dataCriacao" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="descricao" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlImg" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="atividade" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Atividade" inverseName="comunidades" inverseEntity="Atividade" syncable="YES"/>
+        <relationship name="dono" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Usuario" inverseName="comunidadesCriadas" inverseEntity="Usuario" syncable="YES"/>
+        <relationship name="membros" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Usuario" inverseName="comunidades" inverseEntity="Usuario" syncable="YES"/>
+        <relationship name="postagens" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Postagem" inverseName="comunidade" inverseEntity="Postagem" syncable="YES"/>
+    </entity>
+    <entity name="Evento" representedClassName=".Evento" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="descricao" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endereco" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="atividade" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Atividade" inverseName="eventos" inverseEntity="Atividade" syncable="YES"/>
+    </entity>
+    <entity name="Postagem" representedClassName=".Postagem" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="descricao" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titulo" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="comunidade" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Comunidade" inverseName="postagens" inverseEntity="Comunidade" syncable="YES"/>
+        <relationship name="usuario" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Usuario" inverseName="postagens" inverseEntity="Usuario" syncable="YES"/>
+    </entity>
+    <entity name="Usuario" representedClassName=".Usuario" syncable="YES">
+        <attribute name="fotoURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="amigos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Usuario" inverseName="amigos" inverseEntity="Usuario" syncable="YES"/>
+        <relationship name="atividades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Atividade" inverseName="usuarios" inverseEntity="Atividade" syncable="YES"/>
+        <relationship name="comunidades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comunidade" inverseName="membros" inverseEntity="Comunidade" syncable="YES"/>
+        <relationship name="comunidadesCriadas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Comunidade" inverseName="dono" inverseEntity="Comunidade" syncable="YES"/>
+        <relationship name="postagens" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Postagem" inverseName="usuario" inverseEntity="Postagem" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Atividade" positionX="-27" positionY="54" width="128" height="120"/>
+        <element name="Comunidade" positionX="-36" positionY="36" width="128" height="165"/>
+        <element name="Evento" positionX="-36" positionY="72" width="128" height="120"/>
+        <element name="Postagem" positionX="-27" positionY="45" width="128" height="120"/>
+        <element name="Usuario" positionX="-54" positionY="-9" width="128" height="150"/>
+    </elements>
+</model>
