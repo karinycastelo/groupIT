@@ -15,13 +15,20 @@ class DetalheComunidadeViewController: UIViewController, UITableViewDataSource, 
     @IBOutlet weak var nomeComunidade: UILabel!
     @IBOutlet weak var imagemComunidade: UIImageView!
     @IBOutlet weak var quantidadeMembros: UILabel!
+   
+    @IBOutlet weak var seguirButton: UIButton!
+   
+    var comunidade: Comunidade?
     
     var postagens: [Postagem] = []
     
-    var comunidade: Comunidade?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.postagens = Array(comunidade!.postagens!) as! Array<Postagem>
+        imagemComunidade.image = UIImage(named: (self.comunidade?.urlImg)!)
+        nomeComunidade.text = self.comunidade?.nome
+        quantidadeMembros.text = "\(comunidade!.membros?.count ?? 0) membros"
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -54,7 +61,7 @@ class DetalheComunidadeViewController: UIViewController, UITableViewDataSource, 
         if segue.identifier == "novaPostagem" {
             
             if let controller = segue.destinationViewController as? NovaPostagemViewController {
-                //                controller.imagePerfil =
+//                    controller.imagePerfil = self.comunidade.
                 //                controller.nomePerfil
             }
             
@@ -68,6 +75,27 @@ class DetalheComunidadeViewController: UIViewController, UITableViewDataSource, 
                 controller.addPostagem.hidden = true
             }
         }
+    }
+    @IBAction func setSeguirComunidade(sender: UIButton) {
+        
+        if sender.currentTitle == "seguir" {
+            
+            sender.setTitle("seguindo", forState: UIControlState.Normal)
+            
+        }else {
+            
+            let alert = UIAlertController()
+            alert.message = "Deixar de seguir \(self.comunidade?.nome)?"
+            
+            alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            
+            alert.addAction(UIAlertAction(title: "Sim", style: .Default, handler: { (action: UIAlertAction) in
+                sender.setTitle("seguir", forState: UIControlState.Normal)
+            }))
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        
     }
     
     

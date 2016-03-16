@@ -13,11 +13,12 @@ class NovaComunidadeViewController: UIViewController {
     @IBOutlet weak var iconCamera: UIButton!
     @IBOutlet weak var nomeComunidade: UITextField!
     @IBOutlet weak var addComunidade: UIButton!
+    @IBOutlet weak var pikerEsportes: UIPickerView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {

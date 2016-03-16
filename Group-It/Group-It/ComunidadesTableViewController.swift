@@ -10,24 +10,43 @@ import UIKit
 
 class ComunidadesTableViewController: UITableViewController {
 
-    var comunidades: [Comunidade] = [Comunidade(), Comunidade()]
+    var comunidades: [Comunidade] = [Comunidade(), Comunidade(), Comunidade(), Comunidade(), Comunidade()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.clearsSelectionOnViewWillAppear = false
         
-        comunidades[0].nome = "Teste"
-        comunidades[0].urlImg = ""
+        comunidades[0].nome = "Corrida"
+        comunidades[0].urlImg = "corrida"
         comunidades[0].atividade = Atividade()
-        comunidades[0].atividade?.nome = "Skate"
+        comunidades[0].atividade?.nome = "Corrida"
         comunidades[0].membros = [Usuario(), Usuario(), Usuario(), Usuario()]
         
-        comunidades[1].nome = "Teste 2"
-        comunidades[1].urlImg = ""
+        comunidades[1].nome = "Kart"
+        comunidades[1].urlImg = "kart"
         comunidades[1].atividade = Atividade()
-        comunidades[1].atividade?.nome = "Academia"
+        comunidades[1].atividade?.nome = "Kart"
         comunidades[1].membros = [Usuario(), Usuario()]
+        
+        comunidades[2].nome = "Tennis"
+        comunidades[2].urlImg = "tennis"
+        comunidades[2].atividade = Atividade()
+        comunidades[2].atividade?.nome = "Tennis"
+        comunidades[2].membros = [Usuario(), Usuario()]
+        
+        comunidades[3].nome = "Basquete"
+        comunidades[3].urlImg = "basquete"
+        comunidades[3].atividade = Atividade()
+        comunidades[3].atividade?.nome = "Basquete"
+        comunidades[3].membros = [Usuario(), Usuario()]
+        
+        comunidades[4].nome = "PaintBall"
+        comunidades[4].urlImg = "paintball"
+        comunidades[4].atividade = Atividade()
+        comunidades[4].atividade?.nome = "PaintBall"
+        comunidades[4].membros = [Usuario(), Usuario()]
+
     }
 
     // MARK: - Table view data source
@@ -46,28 +65,23 @@ class ComunidadesTableViewController: UITableViewController {
         
         let comunidade = comunidades[indexPath.row]
         
-        cell.nomeComunidade.text = comunidade.nome ?? "Teste " + String(indexPath.row)
-        cell.imageComunidade.image = UIImage(named: comunidade.urlImg ?? "comunidade")
+        cell.nomeComunidade.text = comunidade.nome
+        cell.imageComunidade.image = UIImage(named: comunidade.urlImg!)
         cell.tipo.text = comunidade.atividade?.nome
-        cell.quantidadeMembros.text = String(comunidade.membros?.count) + " membros"
+        cell.quantidadeMembros.text = "\(comunidade.membros?.count ?? 0) membros"
 
         return cell
-    }
-
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        self.performSegueWithIdentifier("comunidadeSegue", sender: self)
     }
 
     // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "comunidadeSegue" {
+        if segue.identifier == "detalheComunidadeSegue" {
             
             if let controller = segue.destinationViewController as? DetalheComunidadeViewController {
                 
-                controller.comunidade = comunidades[self.tableView.indexPathForSelectedRow!.row]
+                controller.comunidade = comunidades[self.tableView.indexPathForSelectedRow!.row] 
             }
         }
     }
