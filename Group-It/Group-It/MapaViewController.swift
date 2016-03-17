@@ -1,18 +1,26 @@
 //
-//  EventoViewController.swift
+//  MapaViewController.swift
 //  Group-It
 //
-//  Created by Kariny Castelo Cavalcante Mota on 15/03/16.
+//  Created by Kariny Castelo Cavalcante Mota on 17/03/16.
 //  Copyright © 2016 HACKATRUCK. All rights reserved.
 //
 
 import UIKit
 
-class EventoViewController: UIViewController {
+class MapaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
 
     /*
     // MARK: - Navigation
